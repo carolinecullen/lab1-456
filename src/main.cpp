@@ -721,7 +721,8 @@ public:
 //		deltaTime += (nowTime - lastTime);
 
 		time_increment += (nowTime - lastTime);
-		if(time_increment >= 0.15)
+
+		if(time_increment >= 15)
 		{
 			Strawberry* berry = new Strawberry();
 			objects.push_back(berry);
@@ -1076,11 +1077,6 @@ public:
 
 		}
 
-
-
-
-
-			
 	
 		// for blender
 		Model->pushMatrix();
