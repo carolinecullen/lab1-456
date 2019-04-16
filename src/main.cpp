@@ -21,8 +21,9 @@ Blender
 #define PI 3.1415
 #define MOVEMENT_SPEED 0.2f
 #define MAX_FRUITS 25
+#define GROUND_SIZE 150
 #define RENDER_SPEED 0.5f
-#define SPAWN_RATE 15
+#define SPAWN_RATE 1
 
 using namespace std;
 using namespace glm;
@@ -73,6 +74,9 @@ public:
 
 	vector<shared_ptr<Shape>> blenderShapes;
     vector<shared_ptr<Shape>> strawberryShapes;
+
+    glm::vec3 strawMin = glm::vec3(0);
+    glm::vec3 strawMax = glm::vec3(0);
 
 	// Contains vertex information for OpenGL
 	GLuint GroundVertexArrayID;
@@ -452,12 +456,12 @@ public:
 
 	void initDeadTrees()
 	{
-		numDeadTrees = randGen(500.f, 1000.f);
+		numDeadTrees = randGen(25.f, 150.f);
 		
 		for(int i = 0; i < numDeadTrees; i++)
 		{
-			deadPositions.push_back(randGen(-512.f, 512.f));
-			deadPositions.push_back(randGen(-512.f, 512.f));
+			deadPositions.push_back(randGen(-GROUND_SIZE, GROUND_SIZE));
+			deadPositions.push_back(randGen(-GROUND_SIZE, GROUND_SIZE));
 			deadScales.push_back(randGen(6.0f, 13.0f));
 			deadRotations.push_back(randGen(0.0f, 180.0f));
 		}
@@ -575,6 +579,7 @@ public:
             }
 
         }
+
     }
 
 	void updateGeom(float dt)
@@ -634,7 +639,7 @@ public:
 
 	void initQuad()
 	{
-		float g_groundSize = 512;
+		float g_groundSize = GROUND_SIZE;
 		float g_groundY = -1.5;
 
 		// A x-z plane at y = g_groundY of dim[-g_groundSize, g_groundSize]^2
@@ -722,7 +727,7 @@ public:
 
 		time_increment += (nowTime - lastTime);
 
-		if(time_increment >= 15)
+		if(time_increment >= SPAWN_RATE)
 		{
 			Strawberry* berry = new Strawberry();
 			objects.push_back(berry);
@@ -790,7 +795,7 @@ public:
 
 		auto Projection = make_shared<MatrixStack>();
 		Projection->pushMatrix();
-		Projection->perspective(45.0f, aspect, 0.01f, 250.0f);
+		Projection->perspective(45.0f, aspect, 0.01f, GROUND_SIZE);
 		MatrixStack *projectionPtr = Projection.get();
 
 		CHECKED_GL_CALL(glDisable(GL_DEPTH_TEST));
@@ -820,10 +825,10 @@ public:
 
 	bool checkForEdge(vec3 hold)
 	{
-		float DistPosX = hold.x - 512.f;
-		float DistNegX = hold.x + 512.f;
-		float DistPosZ = hold.z - 512.f;
-		float DistNegZ = hold.z + 512.f;
+		float DistPosX = hold.x - GROUND_SIZE;
+		float DistNegX = hold.x + GROUND_SIZE;
+		float DistPosZ = hold.z - GROUND_SIZE;
+		float DistNegZ = hold.z + GROUND_SIZE;
 
 		if(abs(DistPosZ) <= 10.f || abs(DistPosX) <= 10.f || abs(DistNegX) <= 10.f || abs(DistNegZ) <= 10.f)
 		{
@@ -907,9 +912,9 @@ public:
 		Model->pushMatrix();
 			Model->loadIdentity();
 
-			float DistPosX = hold.x - 512.f;
-			float DistNegX = hold.x + 512.f;
-			float DistPosZ = hold.z - 512.f;
+			float DistPosX = hold.x - GROUND_SIZE;
+			float DistNegX = hold.x + GROUND_SIZE;
+			float DistPosZ = hold.z - GROUND_SIZE;
 
 			if(abs(DistPosX) <= 10.f)
 			{
@@ -1054,10 +1059,9 @@ public:
 			Model->pushMatrix();
 			Model->translate(vec3(objects[i]->currentPos.x, 0.50f, objects[i]->currentPos.z));
 			Model->rotate(glfwGetTime()/2, vec3(0,1,0));
-			Model->scale(vec3(0.7f,0.7f,0.7f));
+			Model->scale(vec3(1.f,1.0f,1.0f));
 			for (size_t i = 0; i < strawberryShapes.size(); i++)
 			{
-
 				if(i == 0)
 				{
 					SetMaterial(7, sProgPtr);

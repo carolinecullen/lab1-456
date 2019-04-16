@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <glm.hpp>
+#include "BoundingBox.h"
 
 class GameObject
 {
@@ -15,7 +16,7 @@ public:
     virtual void update(float) = 0;
 
     glm::vec3 currentPos;
-
+    BoundingBox bb;
 
     GameObject() {};
     virtual ~GameObject() {};
