@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="obtain"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="clang"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/carolinecullen/Documents/lab1-456/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/carolinecullen/Documents/lab1-456/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/carolinecullen/Documents/lab1-456/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/carolinecullen/Documents/lab1-456/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/carolinecullen/Documents/lab1-456/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/carolinecullen/Documents/lab1-456/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/carolinecullen/Documents/lab1-456/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/carolinecullen/Documents/lab1-456/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/carolinecullen/Documents/lab1-456/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/carolinecullen/Documents/lab1-456/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/carolinecullen/Documents/lab1-456/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/carolinecullen/Documents/lab1-456/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/carolinecullen/Documents/lab1-456/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/carolinecullen/Documents/lab1-456/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/carolinecullen/Documents/lab1-456/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="obtain">
+				<Option output="/Users/carolinecullen/Documents/lab1-456/cmake-build-debug/obtain" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/carolinecullen/Documents/lab1-456/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add directory="/Users/carolinecullen/Documents/lab1-456/ext"/>
+					<Add directory="/Users/carolinecullen/Documents/lab1-456/ext/glad/include"/>
+					<Add directory="/usr/local/Cellar/glfw/3.2.1/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/carolinecullen/Documents/lab1-456/cmake-build-debug/Makefile&quot;  VERBOSE=1 obtain"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/carolinecullen/Documents/lab1-456/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/carolinecullen/Documents/lab1-456/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/carolinecullen/Documents/lab1-456/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="obtain/fast">
+				<Option output="/Users/carolinecullen/Documents/lab1-456/cmake-build-debug/obtain" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/carolinecullen/Documents/lab1-456/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add directory="/Users/carolinecullen/Documents/lab1-456/ext"/>
+					<Add directory="/Users/carolinecullen/Documents/lab1-456/ext/glad/include"/>
+					<Add directory="/usr/local/Cellar/glfw/3.2.1/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/carolinecullen/Documents/lab1-456/cmake-build-debug/Makefile&quot;  VERBOSE=1 obtain/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/carolinecullen/Documents/lab1-456/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/carolinecullen/Documents/lab1-456/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/carolinecullen/Documents/lab1-456/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/ext/glad/include/KHR/khrplatform.h">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/ext/glad/include/glad/glad.h">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/ext/glad/src/glad.c">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/ext/stb/stb_image.h">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/ext/stb/stb_image_write.h">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/ext/tiny_obj_loader/tiny_obj_loader.cpp">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/ext/tiny_obj_loader/tiny_obj_loader.h">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/resources/particle_frag.glsl">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/resources/particle_vert.glsl">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/resources/pass_vert.glsl">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/resources/phong_frag.glsl">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/resources/phong_vert.glsl">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/resources/rooster_tex_frag.glsl">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/resources/rooster_tex_vert.glsl">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/resources/sky_tex_frag.glsl">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/resources/sky_tex_vert.glsl">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/resources/tex_frag.glsl">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/resources/tex_vert.glsl">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/src/GLSL.cpp">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/src/GLSL.h">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/src/GLTextureWriter.cpp">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/src/GLTextureWriter.h">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/src/MatrixStack.cpp">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/src/MatrixStack.h">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/src/Particle.cpp">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/src/Particle.h">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/src/Program.cpp">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/src/Program.h">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/src/Shape.cpp">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/src/Shape.h">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/src/Strawberry.cpp">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/src/Strawberry.h">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/src/Texture.cpp">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/src/Texture.h">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/src/WindowManager.cpp">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/src/WindowManager.h">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/src/main.cpp">
+			<Option target="obtain"/>
+		</Unit>
+		<Unit filename="/Users/carolinecullen/Documents/lab1-456/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
