@@ -865,7 +865,10 @@ public:
 	    // TODO fix
 		for(int i = 0; i < objects.size(); i++)
 		{
-			for (int j = i; j < objects.size(); j++)
+			// TODO switch this to j = i + 1 once fix issue
+			//  i have it like this to test that a strawberry
+			//  intersects with itself (which it currently doesn't)
+		    for (int j = i; j < objects.size(); j++)
 			{
 				BoundingBox* otherBB = objects[j]->getBB();
 				if (objects[i]->isCollided(otherBB))
