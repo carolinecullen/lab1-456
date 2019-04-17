@@ -12,11 +12,12 @@ class GameObject
 public:
 
 
-    virtual void initObject() = 0;
+    virtual void initObject(glm::vec3, glm::vec3) = 0;
     virtual void update(float) = 0;
+    virtual bool isCollided(glm::vec3) = 0;
 
     glm::vec3 currentPos;
-    BoundingBox bb;
+    BoundingBox *bb;
 
     GameObject() {};
     virtual ~GameObject() {};

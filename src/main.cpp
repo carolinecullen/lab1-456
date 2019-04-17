@@ -286,7 +286,6 @@ public:
 		roosterTexture->setWrapModes(GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE);
 	}
 
-
 	void groundSetUp()
 	{
 		//initialize the textures we might use
@@ -468,8 +467,6 @@ public:
 	}
 
 
-
-
 	void initGeom()
 	{
 		deadTree = make_shared<Shape>();
@@ -571,6 +568,8 @@ public:
 						blenderShapes.push_back(s);
 						break;
 					case 1:
+						strawMin = Gmin;
+						strawMax = Gmax;
 						strawberryShapes.push_back(s);
 						break;
 				}
@@ -579,6 +578,7 @@ public:
             }
 
         }
+
 
     }
 
@@ -731,7 +731,7 @@ public:
 		{
 			Strawberry* berry = new Strawberry();
 			objects.push_back(berry);
-			berry->initObject();
+			berry->initObject(strawMin, strawMax);
 			time_increment = 0;
 		}
 
@@ -844,15 +844,11 @@ public:
 	{
 		for(int i = 0; i < objects.size(); i++)
 		{
-			float strawDistX = cameraPos.x - objects[i]->currentPos.x;
-			float strawDistZ = cameraPos.x - objects[i]->currentPos.z;
-			float strawDist = sqrt((strawDistX*strawDistX) + (strawDistZ*strawDistZ));
-
-			if(strawDist <= 1.5f)
+			if(objects[i]->isCollided(cameraPos))
 			{
-				colStrawberries = true;
 				score++;
 				objects.erase(objects.begin()+i);
+				cout << "Score: " << score << endl;
 			}
 
 		}
