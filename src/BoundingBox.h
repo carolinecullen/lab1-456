@@ -20,9 +20,10 @@ public:
         glm::vec3 othermin = otherBB->bbmin;
         glm::vec3 othermax = otherBB->bbmax;
 
-        // TODO this equation doesn't work
-        return (! (curmin.x > othermax.x || curmax.x < othermin.x
-                || curmax.z > othermin.z || curmin.z < othermax.z));
+
+        return ((curmin.x <= othermax.x) && (curmax.x >= othermin.x)) &&
+                ((curmin.z <= othermax.z) && (curmax.z >= othermin.z));
+
 
     };
 
@@ -31,11 +32,11 @@ public:
         glm::vec3 curmin = currentPos + bbmin;
         glm::vec3 curmax = currentPos + bbmax;
 
-        if(!((camera.x > curmin.x) && (camera.x < curmax.x)))
+        if(!(((camera.x) > curmin.x) && ((camera.x) < curmax.x)))
         {
             return false;
         }
-        else if(!((camera.z > curmin.z) && (camera.z < curmax.z)))
+        else if(!(((camera.z) > curmin.z) && ((camera.z) < curmax.z)))
         {
             return false;
         }

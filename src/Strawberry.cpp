@@ -25,6 +25,7 @@ void Strawberry::initObject(glm::vec3 min, glm::vec3 max)
 	velocity.x = getRand(-5.f, 5.f);
 	velocity.z = getRand(-5.f, 5.f);
 
+
 	currentPos.x = getRand(-GROUND_SIZE, GROUND_SIZE);
 	currentPos.z = getRand(-GROUND_SIZE, GROUND_SIZE);
 

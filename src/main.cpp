@@ -20,7 +20,7 @@ Blender
 
 #define PI 3.1415
 #define MOVEMENT_SPEED 0.2f
-#define MAX_FRUITS 25 // TODO
+#define MAX_FRUITS 50
 #define GROUND_SIZE 150
 #define RENDER_SPEED 0.5f
 #define SPAWN_RATE 1
@@ -74,7 +74,7 @@ public:
 
 	vector<shared_ptr<Shape>> blenderShapes;
     vector<shared_ptr<Shape>> strawberryShapes;
-    vector<shared_ptr<Shape>> deadStrawberryShapes;
+    int numOfStraw = 0;
 
     glm::vec3 strawMin = glm::vec3(0);
     glm::vec3 strawMax = glm::vec3(0);
@@ -723,12 +723,13 @@ public:
 
 		time_increment += (nowTime - lastTime);
 
-		if(time_increment >= SPAWN_RATE)
+		if((time_increment >= SPAWN_RATE) && (numOfStraw < MAX_FRUITS))
 		{
 			Strawberry* berry = new Strawberry();
 			objects.push_back(berry);
 			berry->initObject(strawMin, strawMax);
 			time_increment = 0;
+			numOfStraw++;
 		}
 
 		updateGeom(nowTime - lastTime);
@@ -863,19 +864,18 @@ public:
 
 	void checkFruitCollisions()
 	{
-	    // TODO fix
 		for(int i = 0; i < objects.size(); i++)
 		{
-			// TODO switch this to j = i + 1 once fix issue
-			//  i have it like this to test that a strawberry
-			//  intersects with itself (which it currently doesn't)
-		    for (int j = i; j < objects.size(); j++)
+		    for (int j = i+1; j < objects.size(); j++)
 			{
 				BoundingBox* otherBB = objects[j]->getBB();
-				if (objects[i]->isCollided(otherBB))
+
+				if ((objects[i]->isCollided(otherBB)) && (!objects[i]->collected))
 				{
-					objects[i]->velocity *= -1;
-					cout << "collided with berry!!!" << endl;
+					objects[i]->velocity *= -1.f;
+                    objects[j]->velocity *= -1.f;
+					objects[i]->hit_count++;
+                    objects[j]->hit_count++;
 				}
 				delete otherBB;
 			}
@@ -1089,7 +1089,16 @@ public:
                 {
                     if(j == 0)
                     {
-                        SetMaterial(7, sProgPtr);
+                        if(objects[i]->hit_count%3 == 0)
+                        {
+                            SetMaterial(7, sProgPtr);
+                        }
+                        else
+                        {
+                            SetMaterial(objects[i]->hit_count%18, sProgPtr);
+                        }
+
+
                     }
                     else if (j == 2)
                     {
@@ -1150,18 +1159,19 @@ public:
 	{
 		switch (i)
 		{
-		case 0: // shiny blue plastic
-		    glUniform3f(prog->getUniform("MatAmb"), 0.02, 0.04, 0.2);
-		    glUniform3f(prog->getUniform("MatDif"), 0.0, 0.16, 0.9);
-		    glUniform3f(prog->getUniform("MatSpec"), 0.14, 0.2, 0.8);
-		    glUniform1f(prog->getUniform("shine"), 120.0);
-		    break;
-	    case 1: // flat grey
+
+	    case 0: // flat grey
 		    glUniform3f(prog->getUniform("MatAmb"), 0.13, 0.13, 0.14);
 		    glUniform3f(prog->getUniform("MatDif"), 0.3, 0.3, 0.4);
 		    glUniform3f(prog->getUniform("MatSpec"), 0.3, 0.3, 0.4);
 		    glUniform1f(prog->getUniform("shine"), 4.0);
 		    break;
+        case 1: // shiny blue plastic
+            glUniform3f(prog->getUniform("MatAmb"), 0.02, 0.04, 0.2);
+            glUniform3f(prog->getUniform("MatDif"), 0.0, 0.16, 0.9);
+            glUniform3f(prog->getUniform("MatSpec"), 0.14, 0.2, 0.8);
+            glUniform1f(prog->getUniform("shine"), 120.0);
+            break;
 	    case 2: // brass
 		    glUniform3f(prog->getUniform("MatAmb"), 0.3294, 0.2235, 0.02745);
 		    glUniform3f(prog->getUniform("MatDif"), 0.7804, 0.5686, 0.11373);

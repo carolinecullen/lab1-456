@@ -13,6 +13,7 @@ public:
 
 
     bool collected;
+    int hit_count = 0;
     virtual void initObject(glm::vec3, glm::vec3) = 0;
     virtual void update(float) = 0;
     virtual bool isCollided(glm::vec3) = 0;
