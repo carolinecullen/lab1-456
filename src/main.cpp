@@ -74,6 +74,7 @@ public:
 
 	vector<shared_ptr<Shape>> blenderShapes;
     vector<shared_ptr<Shape>> strawberryShapes;
+    vector<shared_ptr<Shape>> deadStrawberryShapes;
 
     glm::vec3 strawMin = glm::vec3(0);
     glm::vec3 strawMax = glm::vec3(0);
@@ -837,7 +838,7 @@ public:
 		float DistNegZ = hold.z + GROUND_SIZE;
 
 
-		if(abs(DistPosZ) <= 10.f || abs(DistPosX) <= 10.f || abs(DistNegX) <= 10.f || abs(DistNegZ) <= 10.f)
+		if(abs(DistPosZ) <= 1.f || abs(DistPosX) <= 1.f || abs(DistNegX) <= 1.f || abs(DistNegZ) <= 1.f)
 		{
 			return false;
 		}
@@ -851,10 +852,10 @@ public:
 	{
 		for(int i = 0; i < objects.size(); i++)
 		{
-			if(objects[i]->isCollided(cameraPos))
+			if((objects[i]->isCollided(cameraPos)) && (objects[i]->collected == false))
 			{
+			    objects[i]->collected = true;
 				score++;
-				objects.erase(objects.begin()+i);
 				cout << "Score: " << score << endl;
 			}
 		}
@@ -1082,22 +1083,29 @@ public:
 			Model->translate(vec3(objects[i]->currentPos.x, 0.50f, objects[i]->currentPos.z));
 			Model->rotate(glfwGetTime()/2, vec3(0,1,0));
 			Model->scale(vec3(1.f,1.0f,1.0f));
-			for (size_t i = 0; i < strawberryShapes.size(); i++)
+			for (size_t j = 0; j < strawberryShapes.size(); j++)
 			{
-				if(i == 0)
-				{
-					SetMaterial(7, sProgPtr);
-				}
-				else if (i == 2)
-				{
-					SetMaterial(8, sProgPtr);
-				}
-				else
-				{
-					SetMaterial(6, sProgPtr);
-				}
+			    if(!(objects[i]->collected))
+                {
+                    if(j == 0)
+                    {
+                        SetMaterial(7, sProgPtr);
+                    }
+                    else if (j == 2)
+                    {
+                        SetMaterial(8, sProgPtr);
+                    }
+                    else
+                    {
+                        SetMaterial(6, sProgPtr);
+                    }
+                }
+			    else
+                {
+                    SetMaterial(6, sProgPtr);
+                }
 				glUniformMatrix4fv(shapeProg->getUniform("M"), 1, GL_FALSE,value_ptr(Model->topMatrix()) );
-				strawberryShapes[i]->draw(shapeProg);
+				strawberryShapes[j]->draw(shapeProg);
 			}
 			Model->popMatrix();
 
@@ -1106,8 +1114,8 @@ public:
 	
 		// for blender
 		Model->pushMatrix();
-		Model->scale(vec3(0.01f,0.01f,0.01f));
-		Model->translate(vec3(0.0f, 0.0f, 0.0f));
+		Model->scale(vec3(0.2f,0.2f,0.2f));
+		Model->translate(vec3(0.0f, 0.0f, 500.0f));
 		Model->rotate(PI, vec3(0.0f, 1.0f, .0f));
 
 		for (size_t i = 0; i < blenderShapes.size(); i++)
@@ -1122,7 +1130,10 @@ public:
 			}
 			else
 			{
-				SetMaterial(17, sProgPtr);
+                glUniform3f(sProgPtr->getUniform("MatAmb"), (0.25f + ((float)score/50.f)), 0.25f, 0.25f);
+                glUniform3f(sProgPtr->getUniform("MatDif"), (0.25f + ((float)score/50.f)), 0.4f, 0.4f);
+                glUniform3f(sProgPtr->getUniform("MatSpec"), (0.25f + ((float)score/50.f)), 0.774597f, 0.774597f);
+                glUniform1f(sProgPtr->getUniform("shine"), 76.8f);
 			}
 			
 			glUniformMatrix4fv(shapeProg->getUniform("M"), 1, GL_FALSE,value_ptr(Model->topMatrix()) );

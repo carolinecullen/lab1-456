@@ -9,6 +9,7 @@ Strawberry::Strawberry()
 {
     this->currentPos.x = 0.f;
     this->currentPos.z = 0.f;
+    collected = false;
 }
 
 float getRand(float min, float max)
@@ -21,7 +22,6 @@ void Strawberry::initObject(glm::vec3 min, glm::vec3 max)
 {
 	this->bb = new BoundingBox(min, max);
 
-
 	velocity.x = getRand(-5.f, 5.f);
 	velocity.z = getRand(-5.f, 5.f);
 
@@ -32,7 +32,10 @@ void Strawberry::initObject(glm::vec3 min, glm::vec3 max)
 
 void Strawberry::update(float dt)
 {
-	currentPos += (dt * velocity);
+    if(!collected)
+    {
+        currentPos += (dt * velocity);
+    }
 }
 
 bool Strawberry::isCollided(glm::vec3 camera)

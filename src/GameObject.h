@@ -12,6 +12,7 @@ class GameObject
 public:
 
 
+    bool collected;
     virtual void initObject(glm::vec3, glm::vec3) = 0;
     virtual void update(float) = 0;
     virtual bool isCollided(glm::vec3) = 0;
