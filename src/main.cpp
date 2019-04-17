@@ -20,7 +20,7 @@ Blender
 
 #define PI 3.1415
 #define MOVEMENT_SPEED 0.2f
-#define MAX_FRUITS 25
+#define MAX_FRUITS 25 // TODO
 #define GROUND_SIZE 150
 #define RENDER_SPEED 0.5f
 #define SPAWN_RATE 1
@@ -455,7 +455,7 @@ public:
 
 	void initDeadTrees()
 	{
-		numDeadTrees = randGen(25.f, 150.f);
+		numDeadTrees = randGen(50.f, 150.f);
 		
 		for(int i = 0; i < numDeadTrees; i++)
 		{
@@ -573,13 +573,8 @@ public:
 						strawberryShapes.push_back(s);
 						break;
 				}
-
-
             }
-
         }
-
-
     }
 
 	void updateGeom(float dt)
@@ -791,7 +786,8 @@ public:
 			ViewUser->lookAt(vec3(cameraPos.x, 1.0, cameraPos.z), forward + vec3(cameraPos.x, 1.0, cameraPos.z), up);
 		MatrixStack *userViewPtr = ViewUser.get();
 
-		checkForFruit(userViewPtr);
+		checkForFruit();
+		checkFruitCollisions();
 
 		auto Projection = make_shared<MatrixStack>();
 		Projection->pushMatrix();
@@ -825,10 +821,21 @@ public:
 
 	bool checkForEdge(vec3 hold)
 	{
-		float DistPosX = hold.x - GROUND_SIZE;
+        for(int i = 0; i < objects.size(); i++)
+        {
+            vec3 pos = objects[i]->currentPos;
+            if ((pos.x < -GROUND_SIZE) || (pos.x > GROUND_SIZE) ||
+                (pos.z < -GROUND_SIZE) || (pos.z > GROUND_SIZE))
+            {
+                objects[i]->velocity *= -1;
+            }
+        }
+
+	    float DistPosX = hold.x - GROUND_SIZE;
 		float DistNegX = hold.x + GROUND_SIZE;
 		float DistPosZ = hold.z - GROUND_SIZE;
 		float DistNegZ = hold.z + GROUND_SIZE;
+
 
 		if(abs(DistPosZ) <= 10.f || abs(DistPosX) <= 10.f || abs(DistNegX) <= 10.f || abs(DistNegZ) <= 10.f)
 		{
@@ -840,7 +847,7 @@ public:
 		}
 	}
 
-	void checkForFruit(MatrixStack* View)
+	void checkForFruit()
 	{
 		for(int i = 0; i < objects.size(); i++)
 		{
@@ -850,9 +857,25 @@ public:
 				objects.erase(objects.begin()+i);
 				cout << "Score: " << score << endl;
 			}
-
 		}
+	}
 
+	void checkFruitCollisions()
+	{
+	    // TODO fix
+		for(int i = 0; i < objects.size(); i++)
+		{
+			for (int j = i; j < objects.size(); j++)
+			{
+				BoundingBox* otherBB = objects[j]->getBB();
+				if (objects[i]->isCollided(otherBB))
+				{
+					objects[i]->velocity *= -1;
+					cout << "collided with berry!!!" << endl;
+				}
+				delete otherBB;
+			}
+		}
 	}
 
 	void drawParticles(MatrixStack* View, float aspect)

@@ -11,10 +11,12 @@ class Strawberry : public GameObject
 
 public:
 
-	glm::vec3 velocity;
+	//glm::vec3 velocity;
 	void initObject(glm::vec3, glm::vec3);
 	void update(float);
 	bool isCollided(glm::vec3);
+	bool isCollided(BoundingBox*);
+    BoundingBox* getBB();
 
 	Strawberry();
 	virtual ~Strawberry() {};

@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Strawberry.h"
 
+#define GROUND_SIZE 150
+
 using namespace glm;
 
 Strawberry::Strawberry()
@@ -9,18 +11,22 @@ Strawberry::Strawberry()
     this->currentPos.z = 0.f;
 }
 
+float getRand(float min, float max)
+{
+	float r = rand() / (float) RAND_MAX;
+	return (1.0f - r) * min + r * max;
+}
 
 void Strawberry::initObject(glm::vec3 min, glm::vec3 max)
 {
 	this->bb = new BoundingBox(min, max);
 
-	velocity.x = (rand() / (float) RAND_MAX) * 2;
-	velocity.z = (rand() / (float) RAND_MAX) * 2;
 
-	float r = rand() / (float) RAND_MAX;
+	velocity.x = getRand(-5.f, 5.f);
+	velocity.z = getRand(-5.f, 5.f);
 
-	currentPos.x =( 1.0f - r) * -150.f + r * 150.f;
-	currentPos.z =( 1.0f - r) * -150.f + r * 150.f;
+	currentPos.x = getRand(-GROUND_SIZE, GROUND_SIZE);
+	currentPos.z = getRand(-GROUND_SIZE, GROUND_SIZE);
 
 }
 
@@ -32,5 +38,15 @@ void Strawberry::update(float dt)
 bool Strawberry::isCollided(glm::vec3 camera)
 {
     return bb->isCollided(camera, currentPos);
+}
+
+bool Strawberry::isCollided(BoundingBox *box)
+{
+	return bb->isCollided(box, currentPos);
+}
+
+BoundingBox* Strawberry::getBB()
+{
+	return bb->get(currentPos);
 }
 

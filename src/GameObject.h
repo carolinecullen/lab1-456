@@ -15,15 +15,17 @@ public:
     virtual void initObject(glm::vec3, glm::vec3) = 0;
     virtual void update(float) = 0;
     virtual bool isCollided(glm::vec3) = 0;
+    virtual bool isCollided(BoundingBox*) = 0;
+    virtual BoundingBox* getBB() = 0;
 
     glm::vec3 currentPos;
-    BoundingBox *bb;
+    glm::vec3 velocity;
 
     GameObject() {};
     virtual ~GameObject() {};
 
-private:
-
+protected:
+    BoundingBox *bb;
 
 };
 
